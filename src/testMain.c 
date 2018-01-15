@@ -1,0 +1,136 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "Rule.h"
+#include "BinarySearchTreeAPI.h"
+
+
+int main(void){
+
+
+ 
+	printf("Testing the createBinTree \\n");
+  printf("Expected output: Tree is not NULL\n");
+    Tree* tree = createBinTree(compareKeywords,deleteFunction);
+     Rule *r1 = createRule(0,0.5,"Testing TestMain.c","test",0);
+	if(tree == NULL){
+		printf("Test failed");
+	}
+	else{
+		printf("Tree is not NULL\nResult:Test Successful\n");
+	}
+
+	printf("\n");
+
+	printf("Testing the createTreeNode\n");
+	printf("Expected output: Tree is not NULL\n");
+	TreeNode *treeNode = createTreeNode(r1);
+	printf("Output:\n");
+    if(treeNode == NULL){
+    	printf("Tree is empty\nTest failed\n");
+    }
+    else{
+       printf("Tree is not NULL\n" );
+       printf("Result:Test Successful\n");
+    }
+
+    printf("\n");
+
+   printf("Testing the addToTree function\n");
+   printf("Expected output: test Rating:0.0,System:0.5,Occurances:0 \n");
+   addToTree(tree,r1);
+   printf("Output: \n");
+   printInOrder(tree,printRule);
+   printf("Result:Test Successful\n");
+
+   printf("\n");
+
+    Rule *r2 = createRule(0,0.5,"Local team won","Sports",0);
+    Rule *r3 = createRule(0,0.5,"Not today","Sad",0);
+    addToTree(tree,r2);
+    addToTree(tree,r3);
+
+    printf("Testing getRootData function\n");
+    printf("Expected output:test \n");
+    void*t1 = getRootData(tree);
+    printf("Output:test %s\n", (char*)t1);
+    printf("Result:Test Successful\n");
+ 
+    printf("\n");
+
+    printf("Testing printInOrder\n");
+    printf("Output: ");
+    printInOrder(tree,printRule);
+    printf("Result:Test Successful\n");
+
+    printf("\n");
+
+     printf("Testing printPreOrder\n");
+    printf("Output: ");
+    printPreOrder(tree,printRule);
+    printf("Result:Test Successful\n");
+     printf("\n");
+
+     printf("Testing printPostOrder\n");
+    printf("Output: ");
+    printPostOrder(tree,printRule);
+    printf("Result:Test Successful\n");
+    printf("\n");
+
+
+    printf("Testing isLeaf function\n");
+    printf("Expected output: 0\n");
+    int x = isLeaf(tree->root);
+    printf("%d\n",x );
+    printf("Result:Test Successful\n");
+
+    printf("\n");
+
+     printf("Testing hasTwoChildren function\n");
+    printf("Expected output: 0\n");
+     x = isLeaf(tree->root);
+    printf("%d\n",x );
+    printf("Result:Test Successful\n");
+
+    printf("Testing findInTree function\n");
+    printf("Expected output:Found\n");
+    TreeNode *tN = findInTree(tree,r1);
+    if(tN != NULL){
+      printf("Found\nResult:Test Successful\n");
+    }
+    else{
+      printf("Test failed\n");
+    }
+
+    printf("\n");
+    printf("Testing removeFromTree function\n");
+    printf("Expected output: Match found,Word deleted successfully\n");
+     void *data = findInTree(tree,r1);
+
+        if(data != NULL){
+           printf("Match found\nWord deleted successfully\n");
+           printf("Test:Result:Test successful\n");
+
+          removeFromTree(tree,r1);
+        }
+        else{
+          printf("No Match found\n");
+        }
+    printf("\n");
+    printf("Testing destroyBinTree\n");
+    printf("Expected output:Tree has been destroyed\n");
+    destroyBinTree(tree);
+    printf("Output: \n");
+    if(tree){
+      printf("Tree has been destroyed\n");
+      printf("Result:Test successful\n");
+    }
+    else{
+      printf("Test failed\n");
+    }
+    printf("\n");
+
+   return 0;
+}
+    
